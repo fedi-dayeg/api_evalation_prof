@@ -6,6 +6,7 @@ router.post('/prof',
     profControll.createEtudiant
 );
 router.get('/prof', profControll.getProfs);
-router.get('/prof/profId', profControll.getProf);
+router.get('/prof/:profId', profControll.getProf);
+router.put('/prof/:profId',profControll.updateProf);
 
 module.exports = router;
