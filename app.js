@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const profRooter = require('./root/profRoot');
+const etudiantRooter = require('./root/etudiantRoot');
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use(profRooter);
+app.use(etudiantRooter);
 
 app.use((error, req, res, next) => {
     console.log(error);

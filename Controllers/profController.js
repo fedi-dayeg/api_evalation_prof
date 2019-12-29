@@ -1,6 +1,6 @@
 const Prof = require('../Models/Prof');
-const path = require('path');
-exports.createEtudiant = (req, res, next) => {
+
+exports.createProf = (req, res, next) => {
     const Nom = req.body.nom;
     const Prenom = req.body.prenom;
 
@@ -24,8 +24,6 @@ exports.createEtudiant = (req, res, next) => {
             }
             next(err);
         });
-
-
 };
 
 exports.getProfs = (req, res, next) => {
