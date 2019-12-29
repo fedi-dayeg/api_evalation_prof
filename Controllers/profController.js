@@ -103,3 +103,27 @@ exports.updateProf = (req, res, next) => {
         })
 };
 
+exports.deleteRof = (req, res, next) => {
+    const profId = req.params.profId;
+    Prof.findById(profId)
+        .then(prof => {
+            if (!prof){
+                const error =new Error('Prof pas Trouver');
+                error.statusCode = 404 ;
+                throw error;
+            }
+            return Prof.findByIdAndRemove(profId)
+        })
+        .then(result => {
+            res.status(200).json({
+                message: 'Prof Supprimer'
+            });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+                console.log(err);
+            }
+            next(err);
+        })
+};
