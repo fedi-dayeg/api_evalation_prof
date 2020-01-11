@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const ip = require('ip');
-const URL = 'mongodb+srv://fedi:22551348@cluster0-zcb1a.mongodb.net/api?retryWrites=true&w=majority';
-
+const URL = 'mongodb+srv://fedi:22551348@cluster0-zcb1a.mongodb.net/student?retryWrites=true&w=majority';
+const{userRoute}= require('../routes/userRoute');
 
 
 
@@ -14,7 +14,7 @@ mongoose.connect(URL, {userNewUrlParser: true})
         const app = express();
         app.use(cors());
         app.use(bodyParser.json());
-
+        app.use('/user', userRoute);
 
 
         /** static folder */
