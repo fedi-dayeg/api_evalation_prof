@@ -1,7 +1,7 @@
-const {UserAuth} = require('../Models/User');
+const {User} = require('../Models/User');
 
 function getAllUseres(response) {
-    UserAuth.find({}).exec(function (err, users) {
+    User.find({}).exec(function (err, users) {
         if (!err) response.send({
             success: true,
             users: users
@@ -14,36 +14,49 @@ function getAllUseres(response) {
 }
 
 function getById(request, response) {
-    let id = request.id;
-    UserAuth.findById(id).exec(function (err, user) {
+    let id = request.params.id;
+    User.findById(id).exec(function (err, user) {
         if (!err) response.send({
             success: true,
-            usere: user,
+            user: user,
         });
         else response.send({
             success: false,
-            message: 'Error in Add User'
+            message: 'No user Found'
         })
     })
 }
 
 function AddUser(request, response) {
-    let newUser = new UserAuth(request.body);
-    newUser.save().then(function (user) {
-        response.send({
-            success: true,
-            user: user
-        }).catch(function (err) {
+    let newUser = new User(request.body);
+    try {
+        newUser.save().then(function (user) {
             response.send({
-                success: false,
-                error: err,
-                message: 'Error in the Add User'
+                success: true,
+                user: user
+            }).catch(function (err) {
+                response.send({
+                    success: false,
+                    error: err,
+                })
             })
         })
+    } catch (e) {
+        response.send({
+            success: false
+        })
+    }
+}
+
+function removeUser(request, response) {
+    let id = request.params.id;
+    User.deleteOne({_id: id}, function (err) {
+        if (!err) response.send({success: true, message: 'User removed'});
+        else response.send({success: false, message: 'Error of remove the user'})
     })
 }
 
-module.exports = {getAllUseres, getById, AddUser};
+module.exports = {getAllUseres, getById, AddUser, removeUser};
 
 
 

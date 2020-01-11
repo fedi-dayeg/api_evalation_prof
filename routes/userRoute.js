@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {getAllUseres, getById, AddUser} = require('../controller/userController');
+const {getAllUseres, getById, AddUser, removeUser} = require('../controller/userController');
 
 const userRoute = express.Router();
 
@@ -16,6 +16,9 @@ userRoute.route('/')
 userRoute.route('/:id')
     .get(function (request, response) {
         getById(request, response)
+    })
+    .delete(function (request, response) {
+        removeUser(request, response);
     });
 
 module.exports = {userRoute};
