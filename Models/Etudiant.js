@@ -8,7 +8,27 @@ const Etudiant = mongoose.model('Etudiant', new Schema({
         },
         prenom: {
             type: String,
-            required: true
+            required: false
+        },
+        password: {
+            type: String,
+            required: false
+        },
+        email: {
+            type: String,
+            required: false
+        },
+        numTel: {
+            type: Number,
+            required: false
+        },
+        numInscription: {
+            type: Number,
+            required: false
+        },
+        cin: {
+            type: Number,
+            required: false
         },
         classe: {
             type: mongoose.Schema.Types.ObjectId,

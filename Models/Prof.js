@@ -10,6 +10,14 @@ const Proffiseur = mongoose.model('Proffiseur', new Schema({
             type: String,
             required: true
         },
+        password: {
+            type: String,
+            required: true
+        },
+        descriptionProfisseur: {
+            type: String,
+            required: false
+        },
         classes: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Classe'

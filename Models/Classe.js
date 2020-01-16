@@ -7,7 +7,7 @@ const Classe = mongoose.model('Classe', new Schema({
             required: true
         },
         annee: {
-            type: Date,
+            type: String,
             required: false
         },
         etudiants: [{

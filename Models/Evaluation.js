@@ -6,6 +6,15 @@ const Evaluation = mongoose.model('Evaluation', new Schema({
             type: String,
             required: true
         },
+        niveauDifficulter: {
+            type: String,
+            required: true
+        },
+        prendreProfAutreFois:{
+            type: String,
+            required: true
+        },
+
         etudaints: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Etudiant'
